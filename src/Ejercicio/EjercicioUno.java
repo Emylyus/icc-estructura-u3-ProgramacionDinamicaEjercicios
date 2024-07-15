@@ -29,7 +29,29 @@ import java.util.List;
  */
 public class EjercicioUno {
 
-    // List<List<Integer>> subsets(List<Integer> set) {
+    
+    public List<List<Integer>> subsets(List<Integer> set) {
+        List<List<Integer>> result = new ArrayList<>();
 
-    // }
+        //sacamos el tamaño de n
+        int n = set.size();
+        
+        // Iterar sobre todos los números de 0 a (2^n - 1)
+        for (int i = 0; i < (1 << n); i++) {//<< se utiliza para calcular potencias de 2
+            List<Integer> subset = new ArrayList<>();
+            
+            // Construir el subconjunto actual
+            for (int j = 0; j < n; j++) {
+                if ((i & (1 << j)) > 0) {
+                    subset.add(set.get(j));
+                }
+            }
+            
+            // Agregar el subconjunto actual a la lista de resultados
+            result.add(subset);
+        }
+        
+        return result;
+    }
+    
 }
